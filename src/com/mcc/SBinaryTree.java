@@ -129,7 +129,7 @@ public class SBinaryTree<T extends Comparable<T>> implements IBinaryTree<T> {
       if (raiz.getIzquierdo() != null && raiz.getDerecho() != null) {
         Nodo<T> minNodoDerecha = elementoMinimo(raiz.getDerecho());
         raiz.setDato(minNodoDerecha.getDato());
-        remover(raiz.getDerecho(), minNodoDerecha.getDato());
+        raiz.setDerecho(remover(raiz.getDerecho(), minNodoDerecha.getDato()));
       } else if (raiz.getIzquierdo() != null) {
         raiz = raiz.getIzquierdo();
       } else if (raiz.getDerecho() != null) {
@@ -287,7 +287,7 @@ public class SBinaryTree<T extends Comparable<T>> implements IBinaryTree<T> {
       throw new NullPointerException("La raiz es nula");
     }
 
-    if (!(this.raiz.getDato() instanceof Integer)) {
+    if (!(this.raiz.getDato() instanceof Number)) {
       throw new RuntimeException("Para obtener promedio el arbol debe contener enteros.");
     }
 
