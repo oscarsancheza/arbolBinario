@@ -1,5 +1,7 @@
 package com.mcc;
 
+import java.util.List;
+
 public interface IBinaryTree<T> {
   boolean buscar(T d);
 
@@ -21,13 +23,13 @@ public interface IBinaryTree<T> {
 
   T getPadre(T n);
 
-  int balance();
+  int balance() throws Exception;
 
-  int balance(T dato);
+  int balance(T dato) throws Exception;
 
   T elementoMayor();
 
-  double promedio();
-
   String nodosGeneracion(int generacion);
+
+  List<T> getData();
 }

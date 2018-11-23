@@ -1,5 +1,8 @@
 package com.mcc;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class SBinaryTree<T extends Comparable<T>> implements IBinaryTree<T> {
 
   private Nodo<T> raiz;
@@ -248,21 +251,21 @@ public class SBinaryTree<T extends Comparable<T>> implements IBinaryTree<T> {
   }
 
   @Override
-  public int balance() {
+  public int balance() throws Exception {
     return balance(this.raiz);
   }
 
   @Override
-  public int balance(T dato) {
+  public int balance(T dato) throws Exception {
     if (dato == null) {
-      throw new NullPointerException("el dato a buscar no debe ser nulo");
+      throw new Exception("el dato a buscar no debe ser nulo");
     }
     return balance(buscarNodo(this.raiz, dato));
   }
 
-  private int balance(Nodo<T> nodo) {
+  private int balance(Nodo<T> nodo) throws Exception {
     if (nodo == null) {
-      throw new NullPointerException("El nodo es nulo.");
+      throw new Exception("El nodo es nulo.");
     }
 
     return tamaño(nodo.getIzquierdo()) - tamaño(nodo.getDerecho());
@@ -281,23 +284,21 @@ public class SBinaryTree<T extends Comparable<T>> implements IBinaryTree<T> {
     return elementoMayor(raiz.getDerecho());
   }
 
-  @Override
-  public double promedio() {
-    if (this.raiz == null) {
-      throw new NullPointerException("La raiz es nula");
-    }
-
-    if (!(this.raiz.getDato() instanceof Number)) {
-      throw new RuntimeException("Para obtener promedio el arbol debe contener enteros.");
-    }
-
-    return (double) suma(this.raiz) / tamaño();
+  public List<T> getData() {
+    return getData(raiz);
   }
 
-  private Integer suma(Nodo<T> nodo) {
-    if (nodo == null) {
-      return 0;
+  private List<T> getData(Nodo<T> raiz) {
+    List<T> list = new ArrayList<>();
+    if (raiz.getDato() != null) {
+      list.add(raiz.getDato());
     }
-    return (Integer) nodo.getDato() + suma(nodo.getIzquierdo()) + suma(nodo.getDerecho());
+    if (raiz.getIzquierdo() != null) {
+      list.addAll(getData(raiz.getIzquierdo()));
+    }
+    if (raiz.getDerecho() != null) {
+      list.addAll(getData(raiz.getDerecho()));
+    }
+    return list;
   }
 }

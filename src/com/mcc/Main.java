@@ -3,11 +3,11 @@ package com.mcc;
 public class Main {
 
   public static void main(String[] args) {
-    int[] valores = new int[] {50, 30, 20, 40, 70, 60, 80};
+    double[] valores = new double[] {50, 30, 20, 40, 70, 60, 80, 45, 15};
 
     // String[] valores = {"oscar", "cesar"};
 
-    IBinaryTree<Integer> sBinaryTree = new SBinaryTree<>();
+    IBinaryTree<Double> sBinaryTree = new SBinaryTree<>();
     for (int i = 0; i < valores.length; i++) {
       sBinaryTree.insertar(valores[i]);
     }
@@ -19,7 +19,7 @@ public class Main {
      /  \    /  \
     20   40  60   80 */
 
-    System.out.println("buscar 50:" + sBinaryTree.buscar(50));
+    /*System.out.println("buscar 50:" + sBinaryTree.buscar(50));
     System.out.println("tamaño:" + sBinaryTree.tamaño());
 
     System.out.println("inorden");
@@ -59,5 +59,17 @@ public class Main {
     System.out.println("elemento mayor:" + sBinaryTree.elementoMayor());
 
     System.out.println("promedio:" + sBinaryTree.promedio());
+
+    System.out.println("promedio:" + promedio(sBinaryTree));*/
+
+    System.out.println("busqueda:" + sBinaryTree.buscar(10.0));
+
+    try {
+      System.out.println("busqueda:" + sBinaryTree.balance());
+    } catch (Exception e) {
+      System.out.println("exception:" + e.toString());
+    }
+
+    System.out.println("promedio" + BinaryTreeUtil.promedio(sBinaryTree));
   }
 }
