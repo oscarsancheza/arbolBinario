@@ -3,11 +3,11 @@ package com.mcc;
 public class Main {
 
   public static void main(String[] args) {
-    double[] valores = new double[] {50, 30, 20, 40, 70, 60, 80, 45, 15};
+    int[] valores = new int[] {50, 30, 20, 40, 70, 60, 80, 45, 15};
 
     // String[] valores = {"oscar", "cesar"};
 
-    IBinaryTree<Double> sBinaryTree = new SBinaryTree<>();
+    IBinaryTree<Integer> sBinaryTree = new SBinaryTree<>();
     for (int i = 0; i < valores.length; i++) {
       sBinaryTree.insertar(valores[i]);
     }
@@ -62,10 +62,10 @@ public class Main {
 
     System.out.println("promedio:" + promedio(sBinaryTree));*/
 
-    System.out.println("busqueda:" + sBinaryTree.buscar(10.0));
+    System.out.println("busqueda:" + sBinaryTree.buscar(10));
 
     try {
-      System.out.println("busqueda:" + sBinaryTree.balance());
+      System.out.println("busqueda:" + sBinaryTree.balance(13));
     } catch (Exception e) {
       System.out.println("exception:" + e.toString());
     }

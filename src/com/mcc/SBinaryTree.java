@@ -252,6 +252,10 @@ public class SBinaryTree<T extends Comparable<T>> implements IBinaryTree<T> {
 
   @Override
   public int balance() throws Exception {
+    if(this.raiz == null) {
+      throw new Exception("El arbol en nulo");
+    }
+
     return balance(this.raiz);
   }
 
@@ -260,14 +264,17 @@ public class SBinaryTree<T extends Comparable<T>> implements IBinaryTree<T> {
     if (dato == null) {
       throw new Exception("el dato a buscar no debe ser nulo");
     }
-    return balance(buscarNodo(this.raiz, dato));
-  }
 
-  private int balance(Nodo<T> nodo) throws Exception {
-    if (nodo == null) {
-      throw new Exception("El nodo es nulo.");
+    Nodo<T> nodo = buscarNodo(this.raiz, dato);
+
+    if(nodo == null) {
+      throw new Exception("El dato a buscar no existe en el arbol.");
     }
 
+    return balance(nodo);
+  }
+
+  private int balance(Nodo<T> nodo) {
     return tamaño(nodo.getIzquierdo()) - tamaño(nodo.getDerecho());
   }
 
